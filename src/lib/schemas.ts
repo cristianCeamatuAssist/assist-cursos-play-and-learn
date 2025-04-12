@@ -27,4 +27,24 @@ export const signUpSchema = z.object({
 export const updateProfileSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters').optional(),
   email: z.string().email('Please enter a valid email address').optional(),
+});
+
+// Project create schema
+export const createProjectSchema = z.object({
+  title: z.string().min(3, 'Title must be at least 3 characters'),
+  description: z.string().optional(),
+  status: z.enum(['ACTIVE', 'COMPLETED', 'ON_HOLD', 'CANCELLED']).default('ACTIVE'),
+  priority: z.enum(['LOW', 'MEDIUM', 'HIGH']).default('MEDIUM'),
+  startDate: z.coerce.date(),
+  endDate: z.coerce.date().optional().nullable(),
+});
+
+// Project update schema
+export const updateProjectSchema = z.object({
+  title: z.string().min(3, 'Title must be at least 3 characters').optional(),
+  description: z.string().optional(),
+  status: z.enum(['ACTIVE', 'COMPLETED', 'ON_HOLD', 'CANCELLED']).optional(),
+  priority: z.enum(['LOW', 'MEDIUM', 'HIGH']).optional(),
+  startDate: z.coerce.date().optional(),
+  endDate: z.coerce.date().optional().nullable(),
 }); 

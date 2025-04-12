@@ -15,16 +15,46 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
+  id        String        @id @default(cuid())
+  email     String        @unique
   name      String?
   password  String
-  role      Role     @default(USER)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  role      Role          @default(USER)
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  projects  UserProject[]
+}
+
+model UserProject {
+  id          String    @id @default(cuid())
+  title       String
+  description String?
+  status      Status    @default(ACTIVE)
+  priority    Priority  @default(MEDIUM)
+  startDate   DateTime  @default(now())
+  endDate     DateTime?
+  userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([userId])
 }
 
 enum Role {
   USER
   ADMIN
+}
+
+enum Status {
+  ACTIVE
+  COMPLETED
+  ON_HOLD
+  CANCELLED
+}
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
 }
