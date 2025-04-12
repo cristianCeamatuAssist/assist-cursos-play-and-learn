@@ -7,6 +7,7 @@ import Link from "next/link";
 export function Navbar() {
   const { data: session, status } = useSession();
   const isAuthenticated = status === "authenticated";
+  const isAdmin = isAuthenticated && session?.user?.role === "ADMIN";
 
   return (
     <nav className="bg-white border-b border-gray-200">
@@ -23,6 +24,11 @@ export function Navbar() {
               {isAuthenticated && (
                 <Link href="/profile" className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900">
                   Profile
+                </Link>
+              )}
+              {isAdmin && (
+                <Link href="/admin/users" className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900">
+                  Users
                 </Link>
               )}
             </div>
