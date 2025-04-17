@@ -2,15 +2,15 @@ import { Priority, Status } from '@/generated/prisma';
 import { createProjectSchema } from '@/lib/schemas';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { format, parse } from 'date-fns';
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 // Create a custom form schema for the form that uses string dates
 const projectFormSchema = z.object({
   title: z.string().min(3, 'Title must be at least 3 characters'),
   description: z.string().optional(),
-  status: z.enum(['ACTIVE', 'COMPLETED', 'ON_HOLD', 'CANCELLED']).default('ACTIVE'),
-  priority: z.enum(['LOW', 'MEDIUM', 'HIGH']).default('MEDIUM'),
+  status: z.enum(['ACTIVE', 'COMPLETED', 'ON_HOLD', 'CANCELLED']),
+  priority: z.enum(['LOW', 'MEDIUM', 'HIGH']),
   startDate: z.string().min(1, 'Start date is required'),
   endDate: z.string().optional(),
 });
@@ -60,7 +60,7 @@ export function ProjectForm({ initialData, onSubmit, onCancel, isSubmitting }: P
     defaultValues,
   });
 
-  const handleFormSubmit = (formData: ProjectFormValues) => {
+  const handleFormSubmit: SubmitHandler<ProjectFormValues> = (formData) => {
     // Convert string dates to Date objects
     const processedData = {
       ...formData,
