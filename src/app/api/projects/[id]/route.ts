@@ -7,9 +7,9 @@ import { db } from '@/lib/db';
 import { updateProjectSchema } from '@/lib/schemas';
 
 interface RouteParams {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 // Get a specific project by ID
@@ -24,7 +24,7 @@ export async function GET(_req: NextRequest, { params }: RouteParams) {
       );
     }
 
-    const { id } = params;
+    const { id } = await params;
 
     const project = await db.userProject.findUnique({
       where: {
@@ -62,7 +62,7 @@ export async function PATCH(req: NextRequest, { params }: RouteParams) {
       );
     }
 
-    const { id } = params;
+    const { id } = await params;
     const body = await req.json();
     const validatedData = updateProjectSchema.parse(body);
 
@@ -119,7 +119,7 @@ export async function DELETE(_req: NextRequest, { params }: RouteParams) {
       );
     }
 
-    const { id } = params;
+    const { id } = await params;
 
     // Check if project exists and belongs to user
     const existingProject = await db.userProject.findUnique({

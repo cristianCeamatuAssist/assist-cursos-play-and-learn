@@ -13,8 +13,8 @@ import { NoProjectsFound } from '@/components/projects/NoProjectsFound';
 import { ProjectCard } from '@/components/projects/ProjectCard';
 import { ProjectForm } from '@/components/projects/ProjectForm';
 import { ProjectModal } from '@/components/projects/ProjectModal';
-import { Priority, Status } from '@/generated/prisma';
 import { createProjectSchema } from '@/lib/schemas';
+import { Priority, Status } from '@prisma/client';
 
 type Project = {
   id: string;

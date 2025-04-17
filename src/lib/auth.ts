@@ -25,7 +25,7 @@ export async function signIn(email: string, password: string) {
     return null;
   }
 
-  const secret = process.env.JWT_SECRET || 'fallback-secret';
+  const jwtSecret = process.env.JWT_SECRET || 'fallback-secret';
   
   const token = sign(
     {
@@ -33,8 +33,7 @@ export async function signIn(email: string, password: string) {
       email: user.email,
       role: user.role,
     },
-    secret,
-    { expiresIn: process.env.JWT_EXPIRES_IN || '7d' }
+    jwtSecret
   );
 
   return {
@@ -50,8 +49,8 @@ export async function signIn(email: string, password: string) {
 
 export function verifyToken(token: string): TokenPayload | null {
   try {
-    const secret = process.env.JWT_SECRET || 'fallback-secret';
-    const decoded = verify(token, secret) as TokenPayload;
+    const jwtSecret = process.env.JWT_SECRET || 'fallback-secret';
+    const decoded = verify(token, jwtSecret) as TokenPayload;
     return decoded;
   } catch {
     return null;

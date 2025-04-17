@@ -25,7 +25,7 @@ export function DeleteProjectModal({
         </div>
         
         <p className="text-gray-600">
-          You are about to delete <span className="font-medium">"{projectTitle}"</span>. This action cannot be undone.
+          You are about to delete <span className="font-medium">&quot;{projectTitle}&quot;</span>. This action cannot be undone.
         </p>
         
         <div className="pt-4 flex justify-end space-x-3">

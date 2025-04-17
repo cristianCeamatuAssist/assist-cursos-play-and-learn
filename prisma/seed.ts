@@ -1,5 +1,5 @@
+import { Priority, Role, Status } from '@prisma/client';
 import { hash } from 'bcrypt';
-import { Priority, Role, Status } from '../src/generated/prisma';
 import { db } from '../src/lib/db';
 
 async function main() {
