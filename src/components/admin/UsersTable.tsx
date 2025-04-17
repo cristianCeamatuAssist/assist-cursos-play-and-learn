@@ -1,5 +1,5 @@
-import { Priority, Status } from '@/generated/prisma';
 import { formatDate } from '@/lib/utils';
+import { Priority, Status } from '@prisma/client';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { UserProjects } from './UserProjects';
 

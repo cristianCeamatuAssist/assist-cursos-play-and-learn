@@ -1,6 +1,6 @@
-import { Priority, Status } from '@/generated/prisma';
 import { createProjectSchema } from '@/lib/schemas';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Priority, Status } from '@prisma/client';
 import { format, parse } from 'date-fns';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';

@@ -5,7 +5,7 @@ import {
     TooltipProvider,
     TooltipTrigger,
 } from '@/components/ui/tooltip';
-import { Priority, Status } from '@/generated/prisma';
+import { Priority, Status } from '@prisma/client';
 import { format } from 'date-fns';
 
 type Project = {

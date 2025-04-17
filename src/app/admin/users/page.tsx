@@ -3,7 +3,7 @@
 import { Pagination } from '@/components/admin/Pagination';
 import { SearchInput } from '@/components/admin/SearchInput';
 import { UsersTable } from '@/components/admin/UsersTable';
-import { Priority, Status } from '@/generated/prisma';
+import { Priority, Status } from '@prisma/client';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { toast } from 'sonner';

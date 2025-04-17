@@ -12,7 +12,7 @@ export function NoProjectsFound({ onAddProject }: NoProjectsFoundProps) {
       </div>
       <h3 className="text-xl font-semibold text-gray-900 mb-2">No projects found</h3>
       <p className="text-gray-500 mb-6 max-w-md">
-        You haven't created any projects yet. Start by creating your first project to track your work.
+        You haven&apos;t created any projects yet. Start by creating your first project to track your work.
       </p>
       <button
         onClick={onAddProject}
